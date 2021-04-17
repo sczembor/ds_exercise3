@@ -35,6 +35,7 @@ int numElements(void);
 bool_t
 innit_1_svc(int *result, struct svc_req *rqstp)
 {
+    printf("innit() in progress\n");
 	bool_t retval;
 
 	*result=deleteList();
@@ -46,6 +47,7 @@ innit_1_svc(int *result, struct svc_req *rqstp)
 bool_t
 set_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  struct svc_req *rqstp)
 {
+    printf("set_value() in progress\n");
 	bool_t retval;
 
     strcpy(tmp.key,key);
@@ -68,7 +70,8 @@ set_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  struc
 bool_t
 get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
 {
-	bool_t retval;
+	printf("get_value() in progress\n");
+    bool_t retval;
 
     strcpy(tmp.key,key);
     if(searchList(&tmp.key)==1){
@@ -76,11 +79,8 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
         tmp=*getValue(tmp.key);
         result->val1 = malloc(255*sizeof(char));
         strcpy(result->val1,tmp.value1);
-        printf("server side what we copy:%s\n",tmp.value1);
-        printf("server side result:%s\n",result->val1);
         result->val2=tmp.value2;
         result->val3=tmp.value3;
-        printf("val1:%s\nval2:%d\nval3:%f\n", result->val1,result->val2,result->val3);
     }
     else{
         result->res=-1;
@@ -92,6 +92,7 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
 bool_t
 modify_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  struct svc_req *rqstp)
 {
+    printf("modify_value() in progress\n");
 	bool_t retval;
 
     strcpy(tmp.key,key);
@@ -108,6 +109,7 @@ modify_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  st
 bool_t
 delete_key_1_svc(char *key, int *result,  struct svc_req *rqstp)
 {
+    printf("delete_key() in progress\n");
 	bool_t retval;
 
     strcpy(tmp.key,key);
@@ -120,6 +122,7 @@ delete_key_1_svc(char *key, int *result,  struct svc_req *rqstp)
 bool_t
 exist_1_svc(char *key, int *result,  struct svc_req *rqstp)
 {
+    printf("exist() in progress\n");
 	bool_t retval;
 
     strcpy(tmp.key,key);
@@ -132,6 +135,7 @@ exist_1_svc(char *key, int *result,  struct svc_req *rqstp)
 bool_t
 num_items_1_svc(int *result, struct svc_req *rqstp)
 {
+    printf("num_items() in progress\n");
 	bool_t retval;
 
 	*result =numElements();
@@ -143,6 +147,7 @@ num_items_1_svc(int *result, struct svc_req *rqstp)
 int
 com_1_freeresult (SVCXPRT *transp, xdrproc_t xdr_result, caddr_t result)
 {
+    printf("freeing in progress\n");
 	xdr_free (xdr_result, result);
 
 	/*

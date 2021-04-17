@@ -75,6 +75,7 @@ com_1(char *host)
             printf("function returned:%i\n",result_2);
             break;
             case 3://get_value
+            printf("key:");
             scanf("%s", &get_value_1_key);
             res = get_value_1(&get_value_1_key,&result_3, clnt);
             if (res != RPC_SUCCESS) {
@@ -84,9 +85,13 @@ com_1(char *host)
             printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result_3.val1,result_3.val2,result_3.val3);
             break;
             case 4://modify value
+            printf("key:");
             scanf("%s", &modify_value_1_key);
+            printf("new value1:");
             scanf("%s", &modify_value_1_val1);
+            printf("new value2:");
             scanf("%i", &modify_value_1_val2);
+            printf("new value3:");
             scanf("%f", &modify_value_1_val3);
             res = modify_value_1(&modify_value_1_key, &modify_value_1_val1, modify_value_1_val2, modify_value_1_val3,&result_4, clnt);
             if (res != RPC_SUCCESS) {
@@ -95,6 +100,7 @@ com_1(char *host)
             printf("function returned:%i\n",result_4);
             break;
             case 5://delete_key
+            printf("key:");
             scanf("%s", &delete_key_1_key);
             res = delete_key_1(&delete_key_1_key,&result_5, clnt);
             if (res != RPC_SUCCESS) {
@@ -103,6 +109,7 @@ com_1(char *host)
             printf("function returned:%i\n",result_5);
             break;
             case 6://exist
+            printf("key:");
             scanf("%s", &exist_1_key);
             res = exist_1(&exist_1_key,&result_6, clnt);
             if (res != RPC_SUCCESS) {
