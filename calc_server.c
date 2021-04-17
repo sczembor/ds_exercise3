@@ -74,12 +74,16 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
     if(searchList(&tmp.key)==1){
         result->res=0;
         tmp=*getValue(tmp.key);
-        strcpy(*result->val1,tmp.value1);
+        result->val1 = malloc(255*sizeof(char));
+        strcpy(result->val1,tmp.value1);
+        printf("server side what we copy:%s\n",tmp.value1);
+        printf("server side result:%s\n",result->val1);
         result->val2=tmp.value2;
         result->val3=tmp.value3;
+        printf("val1:%s\nval2:%d\nval3:%f\n", result->val1,result->val2,result->val3);
     }
     else{
-        result->res=1;
+        result->res=-1;
     }
     retval=TRUE;
 	return retval;
