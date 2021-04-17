@@ -3,112 +3,79 @@
  * It was generated using rpcgen.
  */
 
+#include <memory.h> /* for memset */
 #include "calc.h"
 
 /* Default timeout can be changed using clnt_control() */
 static struct timeval TIMEOUT = { 25, 0 };
 
-int *
-innit_1(clnt)
-	CLIENT *clnt;
+enum clnt_stat 
+innit_1(int *clnt_res, CLIENT *clnt)
 {
-	static int clnt_res;
+	 return (clnt_call (clnt, innit, (xdrproc_t) xdr_void, (caddr_t) NULL,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, innit, xdr_void, NULL, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS) {
-		return (NULL);
-	return (&clnt_res);
 }
 
-int *
-set_value_1(key, val1, val2, val3, clnt)
-	char *key;
-	char *val1;
-	int val2;
-	float val3;
-	CLIENT *clnt;
+enum clnt_stat 
+set_value_1(char *key, char *val1, int val2, float val3, int *clnt_res,  CLIENT *clnt)
 {
 	set_value_1_argument arg;
-	static int clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
 	arg.key = key;
 	arg.val1 = val1;
 	arg.val2 = val2;
 	arg.val3 = val3;
-	if (clnt_call(clnt, set_value, xdr_set_value_1_argument, &arg, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS)
-		return (NULL);
-	return (&clnt_res);
+	return (clnt_call (clnt, set_value, (xdrproc_t) xdr_set_value_1_argument, (caddr_t) &arg,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 }
 
-getval *
-get_value_1(key, clnt)
-	char *key;
-	CLIENT *clnt;
+enum clnt_stat 
+get_value_1(char *key, getval *clnt_res,  CLIENT *clnt)
 {
-	static getval clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, get_value, xdr_wrapstring, &key, xdr_getval, &clnt_res, TIMEOUT) != RPC_SUCCESS)
-		return (NULL);
-	return (&clnt_res);
+	return (clnt_call(clnt, get_value,
+		(xdrproc_t) xdr_wrapstring, (caddr_t) &key,
+		(xdrproc_t) xdr_getval, (caddr_t) clnt_res,
+		TIMEOUT));
 }
 
-int *
-modify_value_1(key, val1, val2, val3, clnt)
-	char *key;
-	char *val1;
-	int val2;
-	float val3;
-	CLIENT *clnt;
+enum clnt_stat 
+modify_value_1(char *key, char *val1, int val2, float val3, int *clnt_res,  CLIENT *clnt)
 {
 	modify_value_1_argument arg;
-	static int clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
 	arg.key = key;
 	arg.val1 = val1;
 	arg.val2 = val2;
 	arg.val3 = val3;
-	if (clnt_call(clnt, modify_value, xdr_modify_value_1_argument, &arg, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS)
-		return (NULL);
-	return (&clnt_res);
+	return (clnt_call (clnt, modify_value, (xdrproc_t) xdr_modify_value_1_argument, (caddr_t) &arg,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 }
 
-int *
-delete_key_1(key, clnt)
-	char *key;
-	CLIENT *clnt;
+enum clnt_stat 
+delete_key_1(char *key, int *clnt_res,  CLIENT *clnt)
 {
-	static int clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, delete_key, xdr_wrapstring, &key, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS)
-		return (NULL);
-	return (&clnt_res);
+	return (clnt_call(clnt, delete_key,
+		(xdrproc_t) xdr_wrapstring, (caddr_t) &key,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 }
 
-int *
-exist_1(key, clnt)
-	char *key;
-	CLIENT *clnt;
+enum clnt_stat 
+exist_1(char *key, int *clnt_res,  CLIENT *clnt)
 {
-	static int clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, exist, xdr_wrapstring, &key, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS)
-		return (NULL);
-	return (&clnt_res);
+	return (clnt_call(clnt, exist,
+		(xdrproc_t) xdr_wrapstring, (caddr_t) &key,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 }
 
-int *
-num_items_1(clnt)
-	CLIENT *clnt;
+enum clnt_stat 
+num_items_1(int *clnt_res, CLIENT *clnt)
 {
-	static int clnt_res;
+	 return (clnt_call (clnt, num_items, (xdrproc_t) xdr_void, (caddr_t) NULL,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
 
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, num_items, xdr_void, NULL, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS) {
-		return (NULL);
-	return (&clnt_res);
 }

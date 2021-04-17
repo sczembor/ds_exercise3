@@ -6,9 +6,13 @@
 #ifndef _CALC_H_RPCGEN
 #define _CALC_H_RPCGEN
 
-#define RPCGEN_VERSION	199506
-
 #include <rpc/rpc.h>
+
+#include <pthread.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 struct getval {
@@ -18,14 +22,6 @@ struct getval {
 	float val3;
 };
 typedef struct getval getval;
-#ifdef __cplusplus
-extern "C" bool_t xdr_getval(XDR *, getval*);
-#elif __STDC__
-extern  bool_t xdr_getval(XDR *, getval*);
-#else /* Old Style C */
-bool_t xdr_getval();
-#endif /* Old Style C */
-
 
 struct set_value_1_argument {
 	char *key;
@@ -34,14 +30,6 @@ struct set_value_1_argument {
 	float val3;
 };
 typedef struct set_value_1_argument set_value_1_argument;
-#ifdef __cplusplus
-extern "C" bool_t xdr_set_value_1_argument(XDR *, set_value_1_argument);
-#elif __STDC__
-extern  bool_t xdr_set_value_1_argument(XDR *, set_value_1_argument);
-#else /* Old Style C */
-bool_t xdr_set_value_1_argument();
-#endif /* Old Style C */
-
 
 struct modify_value_1_argument {
 	char *key;
@@ -50,86 +38,75 @@ struct modify_value_1_argument {
 	float val3;
 };
 typedef struct modify_value_1_argument modify_value_1_argument;
+
+#define COM 99
+#define COMVER 1
+
+#if defined(__STDC__) || defined(__cplusplus)
+#define innit 1
+extern  enum clnt_stat innit_1(int *, CLIENT *);
+extern  bool_t innit_1_svc(int *, struct svc_req *);
+#define set_value 2
+extern  enum clnt_stat set_value_1(char *, char *, int , float , int *, CLIENT *);
+extern  bool_t set_value_1_svc(char *, char *, int , float , int *, struct svc_req *);
+#define get_value 3
+extern  enum clnt_stat get_value_1(char *, getval *, CLIENT *);
+extern  bool_t get_value_1_svc(char *, getval *, struct svc_req *);
+#define modify_value 4
+extern  enum clnt_stat modify_value_1(char *, char *, int , float , int *, CLIENT *);
+extern  bool_t modify_value_1_svc(char *, char *, int , float , int *, struct svc_req *);
+#define delete_key 5
+extern  enum clnt_stat delete_key_1(char *, int *, CLIENT *);
+extern  bool_t delete_key_1_svc(char *, int *, struct svc_req *);
+#define exist 6
+extern  enum clnt_stat exist_1(char *, int *, CLIENT *);
+extern  bool_t exist_1_svc(char *, int *, struct svc_req *);
+#define num_items 7
+extern  enum clnt_stat num_items_1(int *, CLIENT *);
+extern  bool_t num_items_1_svc(int *, struct svc_req *);
+extern int com_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
+
+#else /* K&R C */
+#define innit 1
+extern  enum clnt_stat innit_1();
+extern  bool_t innit_1_svc();
+#define set_value 2
+extern  enum clnt_stat set_value_1();
+extern  bool_t set_value_1_svc();
+#define get_value 3
+extern  enum clnt_stat get_value_1();
+extern  bool_t get_value_1_svc();
+#define modify_value 4
+extern  enum clnt_stat modify_value_1();
+extern  bool_t modify_value_1_svc();
+#define delete_key 5
+extern  enum clnt_stat delete_key_1();
+extern  bool_t delete_key_1_svc();
+#define exist 6
+extern  enum clnt_stat exist_1();
+extern  bool_t exist_1_svc();
+#define num_items 7
+extern  enum clnt_stat num_items_1();
+extern  bool_t num_items_1_svc();
+extern int com_1_freeresult ();
+#endif /* K&R C */
+
+/* the xdr functions */
+
+#if defined(__STDC__) || defined(__cplusplus)
+extern  bool_t xdr_getval (XDR *, getval*);
+extern  bool_t xdr_set_value_1_argument (XDR *, set_value_1_argument*);
+extern  bool_t xdr_modify_value_1_argument (XDR *, modify_value_1_argument*);
+
+#else /* K&R C */
+extern bool_t xdr_getval ();
+extern bool_t xdr_set_value_1_argument ();
+extern bool_t xdr_modify_value_1_argument ();
+
+#endif /* K&R C */
+
 #ifdef __cplusplus
-extern "C" bool_t xdr_modify_value_1_argument(XDR *, modify_value_1_argument);
-#elif __STDC__
-extern  bool_t xdr_modify_value_1_argument(XDR *, modify_value_1_argument);
-#else /* Old Style C */
-bool_t xdr_modify_value_1_argument();
-#endif /* Old Style C */
-
-
-#define COM ((rpc_uint)99)
-#define COMVER ((rpc_uint)1)
-
-#ifdef __cplusplus
-#define innit ((rpc_uint)1)
-extern "C" int * innit_1(CLIENT *);
-extern "C" int * innit_1_svc(struct svc_req *);
-#define set_value ((rpc_uint)2)
-extern "C" int * set_value_1(char *, char *, int , float , CLIENT *);
-extern "C" int * set_value_1_svc(char *, char *, int , float , struct svc_req *);
-#define get_value ((rpc_uint)3)
-extern "C" getval * get_value_1(char *, CLIENT *);
-extern "C" getval * get_value_1_svc(char *, struct svc_req *);
-#define modify_value ((rpc_uint)4)
-extern "C" int * modify_value_1(char *, char *, int , float , CLIENT *);
-extern "C" int * modify_value_1_svc(char *, char *, int , float , struct svc_req *);
-#define delete_key ((rpc_uint)5)
-extern "C" int * delete_key_1(char *, CLIENT *);
-extern "C" int * delete_key_1_svc(char *, struct svc_req *);
-#define exist ((rpc_uint)6)
-extern "C" int * exist_1(char *, CLIENT *);
-extern "C" int * exist_1_svc(char *, struct svc_req *);
-#define num_items ((rpc_uint)7)
-extern "C" int * num_items_1(CLIENT *);
-extern "C" int * num_items_1_svc(struct svc_req *);
-
-#elif __STDC__
-#define innit ((rpc_uint)1)
-extern  int * innit_1(CLIENT *);
-extern  int * innit_1_svc(struct svc_req *);
-#define set_value ((rpc_uint)2)
-extern  int * set_value_1(char *, char *, int , float , CLIENT *);
-extern  int * set_value_1_svc(char *, char *, int , float , struct svc_req *);
-#define get_value ((rpc_uint)3)
-extern  getval * get_value_1(char *, CLIENT *);
-extern  getval * get_value_1_svc(char *, struct svc_req *);
-#define modify_value ((rpc_uint)4)
-extern  int * modify_value_1(char *, char *, int , float , CLIENT *);
-extern  int * modify_value_1_svc(char *, char *, int , float , struct svc_req *);
-#define delete_key ((rpc_uint)5)
-extern  int * delete_key_1(char *, CLIENT *);
-extern  int * delete_key_1_svc(char *, struct svc_req *);
-#define exist ((rpc_uint)6)
-extern  int * exist_1(char *, CLIENT *);
-extern  int * exist_1_svc(char *, struct svc_req *);
-#define num_items ((rpc_uint)7)
-extern  int * num_items_1(CLIENT *);
-extern  int * num_items_1_svc(struct svc_req *);
-
-#else /* Old Style C */
-#define innit ((rpc_uint)1)
-extern  int * innit_1();
-extern  int * innit_1_svc();
-#define set_value ((rpc_uint)2)
-extern  int * set_value_1();
-extern  int * set_value_1_svc();
-#define get_value ((rpc_uint)3)
-extern  getval * get_value_1();
-extern  getval * get_value_1_svc();
-#define modify_value ((rpc_uint)4)
-extern  int * modify_value_1();
-extern  int * modify_value_1_svc();
-#define delete_key ((rpc_uint)5)
-extern  int * delete_key_1();
-extern  int * delete_key_1_svc();
-#define exist ((rpc_uint)6)
-extern  int * exist_1();
-extern  int * exist_1_svc();
-#define num_items ((rpc_uint)7)
-extern  int * num_items_1();
-extern  int * num_items_1_svc();
-#endif /* Old Style C */
+}
+#endif
 
 #endif /* !_CALC_H_RPCGEN */
