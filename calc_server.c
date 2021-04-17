@@ -7,6 +7,7 @@
 #include "calc.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct Element{
     int type;
@@ -71,14 +72,14 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
 
     strcpy(tmp.key,key);
     if(searchList(&tmp.key)==1){
-        *result.res=0;
+        result->res=0;
         tmp=*getValue(tmp.key);
-        strcpy(*result.val1,tmp.value1); //WEIRD!!!!!
-        *result.val2=tmp.val2;
-        *result.val3=tmp.val3;
+        strcpy(*result->val1,tmp.value1);
+        result->val2=tmp.value2;
+        result->val3=tmp.value3;
     }
     else{
-        *result.res=1;
+        result->res=1;
     }
     retval=TRUE;
 	return retval;
