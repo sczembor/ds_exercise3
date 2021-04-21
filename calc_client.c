@@ -54,10 +54,7 @@ com_1(char *host)
         scanf("%i", &msgtype);
         switch (msgtype) {
             case 1://init
-            res = innit_1(&result_1,clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed\n");
-            }
+            result_1 = innit();
             printf("function returned:%i\n",result_1);
             break;
             case 2://set_value
@@ -69,19 +66,13 @@ com_1(char *host)
             scanf("%i", &set_value_1_val2);
             printf("value3:");
             scanf("%f", &set_value_1_val3);
-            res = set_value_1(&set_value_1_key, &set_value_1_val1, set_value_1_val2, set_value_1_val3, &result_2, clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed\n");
-            }
-            printf("function returned:%i\n",result_2);
+            res = set_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
+            printf("function returned:%i\n",res);
             break;
             case 3://get_value
             printf("key:");
             scanf("%s", &get_value_1_key);
-            res = get_value_1(&get_value_1_key,&result_3, clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed\n");
-            }
+            res = get_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
             printf("function returned:%i\n",result_3.res);
             printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result_3.val1,result_3.val2,result_3.val3);
             break;
@@ -94,36 +85,24 @@ com_1(char *host)
             scanf("%i", &modify_value_1_val2);
             printf("new value3:");
             scanf("%f", &modify_value_1_val3);
-            res = modify_value_1(&modify_value_1_key, &modify_value_1_val1, modify_value_1_val2, modify_value_1_val3,&result_4, clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed:");
-            }
-            printf("function returned:%i\n",result_4);
+            res = modify_value(modify_value_1_key, modify_value_1_val1, modify_value_1_val2, modify_value_1_val3);
+            printf("function returned:%i\n",res);
             break;
             case 5://delete_key
             printf("key:");
             scanf("%s", &delete_key_1_key);
-            res = delete_key_1(&delete_key_1_key,&result_5, clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed:");
-            }
-            printf("function returned:%i\n",result_5);
+            res = delete_key(delete_key_1_key);
+            printf("function returned:%i\n",res);
             break;
             case 6://exist
             printf("key:");
             scanf("%s", &exist_1_key);
-            res = exist_1(&exist_1_key,&result_6, clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed\n");
-            }
-            printf("function returned:%i\n",result_6);
+            res = exist(exist_1_key);
+            printf("function returned:%i\n",res);
             break;
             case 7://num_items
-            res = num_items_1(&result_7,clnt);
-            if (res != RPC_SUCCESS) {
-                clnt_perror(clnt, "call failed\n");
-            }
-            printf("function returned:%i\n",result_7);
+            res = num_items();
+            printf("function returned:%i\n",res);
             break;
             default:
             perror ("Client: Invalid Arguemnt(function)");
