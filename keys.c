@@ -62,7 +62,9 @@ int get_value(char *key, char *value1, int value2, float value3) {
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
-    
+    value1=result.val1;
+    value2=result.val2;
+    values3=result.val3;
     //printf("function returned:%i\n",result.res);
     //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
     
