@@ -54,7 +54,7 @@ com_1(char *host)
         scanf("%i", &msgtype);
         switch (msgtype) {
             case 1://init
-            result_1 = innit();
+            result_1 = Innit();
             printf("function returned:%i\n",result_1);
             break;
             case 2://set_value
@@ -66,13 +66,13 @@ com_1(char *host)
             scanf("%i", &set_value_1_val2);
             printf("value3:");
             scanf("%f", &set_value_1_val3);
-            res = set_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
+            res = Set_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
             printf("function returned:%i\n",res);
             break;
             case 3://get_value
             printf("key:");
             scanf("%s", &get_value_1_key);
-            res = get_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
+            res = Get_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
             printf("function returned:%i\n",res);
             printf("value1:%s\nvalue2:%d\nvalue3:%f\n",set_value_1_val1,set_value_1_val2,set_value_1_val3);
             break;
@@ -85,23 +85,23 @@ com_1(char *host)
             scanf("%i", &modify_value_1_val2);
             printf("new value3:");
             scanf("%f", &modify_value_1_val3);
-            res = modify_value(modify_value_1_key, modify_value_1_val1, modify_value_1_val2, modify_value_1_val3);
+            res = Modify_value(modify_value_1_key, modify_value_1_val1, modify_value_1_val2, modify_value_1_val3);
             printf("function returned:%i\n",res);
             break;
             case 5://delete_key
             printf("key:");
             scanf("%s", &delete_key_1_key);
-            res = delete_key(delete_key_1_key);
+            res = Delete_key(delete_key_1_key);
             printf("function returned:%i\n",res);
             break;
             case 6://exist
             printf("key:");
             scanf("%s", &exist_1_key);
-            res = exist(exist_1_key);
+            res = Exist(exist_1_key);
             printf("function returned:%i\n",res);
             break;
             case 7://num_items
-            res = num_items();
+            res = Num_items();
             printf("function returned:%i\n",res);
             break;
             default:

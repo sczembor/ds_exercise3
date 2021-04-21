@@ -7,10 +7,10 @@
 
 #include "keys.h"
 #include "calc.h"
-
+#include <stdlib.h>
 #define host "localhost"
 
-int init() {
+int Init() {
     CLIENT *clnt;
     clnt = clnt_create (host, COM, COMVER, "udp");
     int result;
@@ -30,7 +30,7 @@ int init() {
     return result;
 }
 
-int set_value(char *key, char *value1, int value2, float value3) {
+int Set_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     int result;
     clnt = clnt_create (host, COM, COMVER, "udp");
@@ -50,7 +50,7 @@ int set_value(char *key, char *value1, int value2, float value3) {
     return result;
 }
 
-int get_value(char *key, char *value1, int value2, float value3) {
+int Get_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     getval result;
     clnt = clnt_create (host, COM, COMVER, "udp");
@@ -58,23 +58,23 @@ int get_value(char *key, char *value1, int value2, float value3) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    result = get_value_1(key, value1,&result, clnt);
-    if (result != RPC_SUCCESS) {
+    result.res = get_value_1(key,&result, clnt);
+    if (result.res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     value1=result.val1;
     value2=result.val2;
-    values3=result.val3;
+    value3=result.val3;
     //printf("function returned:%i\n",result.res);
     //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
     
     
     clnt_destroy (clnt);
-    return result;
+    return result.res;
     
 }
 
-int modify_value(char *key, char *value1, int value2, float value3) {
+int Modify_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     int result;
     clnt = clnt_create (host, COM, COMVER, "udp");
@@ -94,7 +94,7 @@ int modify_value(char *key, char *value1, int value2, float value3) {
     return result;
 }
 
-int delete_key(char* key){
+int Delete_key(char* key){
     CLIENT *clnt;
     int result;
     clnt = clnt_create (host, COM, COMVER, "udp");
@@ -110,7 +110,7 @@ int delete_key(char* key){
     return result;
 }
 
-int exist(char* key){
+int Exist(char* key){
     CLIENT *clnt;
     int result;
     clnt = clnt_create (host, COM, COMVER, "udp");
@@ -125,7 +125,7 @@ int exist(char* key){
     clnt_destroy (clnt);
     return result;
 }
-int exist(){
+int Num_items(){
     CLIENT *clnt;
     int result;
     clnt = clnt_create (host, COM, COMVER, "udp");
