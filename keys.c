@@ -10,17 +10,18 @@
 #include <stdlib.h>
 #define host "localhost"
 
-int Init() {
+int Innit() {
     CLIENT *clnt;
     clnt = clnt_create (host, COM, COMVER, "udp");
     int result;
+    int res;
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
     
-    result = innit_1(&result,clnt);
-    if (result != RPC_SUCCESS) {
+    res = innit_1(&result,clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result);
@@ -33,14 +34,15 @@ int Init() {
 int Set_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     int result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
     
-    result = set_value_1(key, value1, value2, value3, &result, clnt);
-    if (result != RPC_SUCCESS) {
+    res = set_value_1(&key, &value1, value2, value3, &result, clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result_2);
@@ -53,18 +55,25 @@ int Set_value(char *key, char *value1, int value2, float value3) {
 int Get_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     getval result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    result.res = get_value_1(key,&result, clnt);
-    if (result.res != RPC_SUCCESS) {
+    res = get_value_1(&key,&result, clnt);
+    //printf("problems incomin: %s\n",result.val1);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
-    value1=result.val1;
+    value1=malloc(255*sizeof(char));
+    //printf("address in memory %p\n", &value1);
+    strcpy(value1,result.val1);
+    printf("value1 is:%s\n",value1);
     value2=result.val2;
+    printf("value2 is:%i\n",value2);
     value3=result.val3;
+    printf("value3 is:%f\n",value3);
     //printf("function returned:%i\n",result.res);
     //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
     
@@ -77,14 +86,15 @@ int Get_value(char *key, char *value1, int value2, float value3) {
 int Modify_value(char *key, char *value1, int value2, float value3) {
     CLIENT *clnt;
     int result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
     
-    result = modify_value_1(key, value1, value2, value3, &result, clnt);
-    if (result != RPC_SUCCESS) {
+    res = modify_value_1(&key, &value1, value2, value3, &result, clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result_2);
@@ -97,13 +107,14 @@ int Modify_value(char *key, char *value1, int value2, float value3) {
 int Delete_key(char* key){
     CLIENT *clnt;
     int result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    result =delete_key_1(key,&result,clnt);
-    if (result != RPC_SUCCESS) {
+    res =delete_key_1(&key,&result,clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);
@@ -118,7 +129,7 @@ int Exist(char* key){
         clnt_pcreateerror (host);
         exit (1);
     }
-    result =exist_1(key,&result,clnt);
+    result =exist_1(&key,&result,clnt);
     if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
@@ -128,13 +139,14 @@ int Exist(char* key){
 int Num_items(){
     CLIENT *clnt;
     int result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    result =num_items_1(&result,clnt);
-    if (result != RPC_SUCCESS) {
+    res = num_items_1(&result,clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);

@@ -49,14 +49,16 @@ set_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  struc
 {
     printf("set_value() in progress\n");
 	bool_t retval;
-
+    printf("key is: %s\n",key);
     strcpy(tmp.key,key);
+    printf("tmp.key is: %s\n",tmp.key);
     strcpy(tmp.value1,val1);
     tmp.value2=val2;
     tmp.value3=val3;
     
     if(searchList(&tmp.key)==0)
     {
+        printf("adding node\n");
         *result = addNode(&tmp.key,&tmp.value1,&tmp.value2,&tmp.value3);
     }
     else{

@@ -72,9 +72,12 @@ com_1(char *host)
             case 3://get_value
             printf("key:");
             scanf("%s", &get_value_1_key);
+            set_value_1_val1=malloc(255*sizeof(char));
+            printf("address in memory %p\n", &set_value_1_val1);
             res = Get_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
             printf("function returned:%i\n",res);
             printf("value1:%s\nvalue2:%d\nvalue3:%f\n",set_value_1_val1,set_value_1_val2,set_value_1_val3);
+            free(set_value_1_val1);
             break;
             case 4://modify value
             printf("key:");
