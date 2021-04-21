@@ -8,6 +8,8 @@
 #include "keys.h"
 #include "calc.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #define host "localhost"
 
 int Innit() {

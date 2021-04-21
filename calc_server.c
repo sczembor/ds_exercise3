@@ -74,9 +74,11 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
 {
 	printf("get_value() in progress\n");
     bool_t retval;
-
+    //tmp.key = malloc(255*sizeof(char));
     strcpy(tmp.key,key);
+    printf("value of key:%s\n", key);
     if(searchList(&tmp.key)==1){
+        printf("WHY AM I IN IF STATEMENT???\n");
         result->res=0;
         tmp=*getValue(tmp.key);
         result->val1 = malloc(255*sizeof(char));
@@ -85,6 +87,7 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
         result->val3=tmp.value3;
     }
     else{
+        result->val1 = malloc(255*sizeof(char));
         result->res=-1;
     }
     retval=TRUE;
