@@ -73,8 +73,8 @@ com_1(char *host)
             printf("key:");
             scanf("%s", &get_value_1_key);
             res = get_value(set_value_1_key, set_value_1_val1, set_value_1_val2, set_value_1_val3);
-            printf("function returned:%i\n",result_3.res);
-            printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result_3.val1,result_3.val2,result_3.val3);
+            printf("function returned:%i\n",res);
+            printf("value1:%s\nvalue2:%d\nvalue3:%f\n",set_value_1_val1,set_value_1_val2,set_value_1_val3);
             break;
             case 4://modify value
             printf("key:");
