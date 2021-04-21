@@ -7,6 +7,7 @@
 #include "calc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "keys.h"
 
 
 void
