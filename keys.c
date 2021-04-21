@@ -19,8 +19,8 @@ int init() {
         exit (1);
     }
     
-    res = innit_1(&result,clnt);
-    if (res != RPC_SUCCESS) {
+    result = innit_1(&result,clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result);
@@ -39,8 +39,8 @@ int set_value(char *key, char *value1, int value2, float value3) {
         exit (1);
     }
     
-    res = set_value_1(key, value1, value2, value3, &result, clnt);
-    if (res != RPC_SUCCESS) {
+    result = set_value_1(key, value1, value2, value3, &result, clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result_2);
@@ -58,8 +58,8 @@ int get_value(char *key, char *value1, int value2, float value3) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    res = get_value_1(key, value1,&result, clnt);
-    if (res != RPC_SUCCESS) {
+    result = get_value_1(key, value1,&result, clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     value1=result.val1;
@@ -83,8 +83,8 @@ int modify_value(char *key, char *value1, int value2, float value3) {
         exit (1);
     }
     
-    res = modify_value_1(key, value1, value2, value3, &result, clnt);
-    if (res != RPC_SUCCESS) {
+    result = modify_value_1(key, value1, value2, value3, &result, clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     //printf("function returned:%i\n",result_2);
@@ -102,8 +102,8 @@ int delete_key(char* key){
         clnt_pcreateerror (host);
         exit (1);
     }
-    res=delete_key_1(key,&result,clnt);
-    if (res != RPC_SUCCESS) {
+    result =delete_key_1(key,&result,clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);
@@ -118,8 +118,8 @@ int exist(char* key){
         clnt_pcreateerror (host);
         exit (1);
     }
-    res=exist_1(key,&result,clnt);
-    if (res != RPC_SUCCESS) {
+    result =exist_1(key,&result,clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);
@@ -133,8 +133,8 @@ int exist(){
         clnt_pcreateerror (host);
         exit (1);
     }
-    res=num_items_1(&result,clnt);
-    if (res != RPC_SUCCESS) {
+    result =num_items_1(&result,clnt);
+    if (result != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);
