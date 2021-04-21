@@ -62,18 +62,18 @@ int Get_value(char *key, char *value1, int value2, float value3) {
         exit (1);
     }
     res = get_value_1(&key,&result, clnt);
-    //printf("problems incomin: %s\n",result.val1);
+    printf("problems incomin: %s\n",result.val1);
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
-    value1=malloc(255*sizeof(char));
+    //value1=malloc(255*sizeof(char));
     //printf("address in memory %p\n", &value1);
     strcpy(value1,result.val1);
-    printf("value1 is:%s\n",value1);
+    //printf("value1 is:%s\n",value1);
     value2=result.val2;
-    printf("value2 is:%i\n",value2);
+    //printf("value2 is:%i\n",value2);
     value3=result.val3;
-    printf("value3 is:%f\n",value3);
+    //printf("value3 is:%f\n",value3);
     //printf("function returned:%i\n",result.res);
     //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
     
@@ -124,13 +124,14 @@ int Delete_key(char* key){
 int Exist(char* key){
     CLIENT *clnt;
     int result;
+    int res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    result =exist_1(&key,&result,clnt);
-    if (result != RPC_SUCCESS) {
+    res =exist_1(&key,&result,clnt);
+    if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
     clnt_destroy (clnt);

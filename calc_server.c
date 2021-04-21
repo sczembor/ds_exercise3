@@ -100,6 +100,7 @@ modify_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  st
     strcpy(tmp.key,key);
     strcpy(tmp.value1,val1);
     tmp.value2=val2;
+    printf("tmp.value2 is %i val2 is %i\n",tmp.value2,val2);
     tmp.value3=val3;
     
     *result = modifyNode(&tmp.key, &tmp.value1,&tmp.value2,&tmp.value3);
@@ -115,6 +116,8 @@ delete_key_1_svc(char *key, int *result,  struct svc_req *rqstp)
 	bool_t retval;
 
     strcpy(tmp.key,key);
+    printf("key is: %s\n",key);
+    printf("tmp.key is: %s\n",tmp.key);
     *result = deleteElement(&tmp.key);
 
     retval=TRUE;
@@ -128,6 +131,8 @@ exist_1_svc(char *key, int *result,  struct svc_req *rqstp)
 	bool_t retval;
 
     strcpy(tmp.key,key);
+    printf("key is: %s\n",key);
+    printf("tmp.key is: %s\n",tmp.key);
     *result=searchList(&tmp.key);
 
     retval=TRUE;
@@ -211,6 +216,7 @@ int modifyNode(char* key, char* value1, int* value2, float* value3)
         {
             strcpy(tmp->value1, value1);
             tmp->value2 = *value2;
+            //printf(" mod node tmp.value2 is:%i\n",tmp->value2);
             tmp->value3 = *value3;
             return 0;
         }
