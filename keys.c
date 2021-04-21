@@ -92,7 +92,7 @@ int Modify_value(char *key, char *value1, int value2, float value3) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    
+    printf("value2 is: %i",value2);
     res = modify_value_1(&key, &value1, value2, value3, &result, clnt);
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
