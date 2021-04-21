@@ -8,6 +8,8 @@
 #include "keys.h"
 #include "calc.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #define host "localhost"
 
 int Innit() {
@@ -62,7 +64,7 @@ int Get_value(char *key, char *value1, int value2, float value3) {
         exit (1);
     }
     res = get_value_1(&key,&result, clnt);
-    printf("problems incomin: %s\n",result.val1);
+    //printf("problems incomin: %s\n",result.val1);
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
