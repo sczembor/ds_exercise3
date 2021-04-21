@@ -10,7 +10,7 @@
 
 int Innit();
 int Set_value(char* key, char* value1, int value2, float value3);
-int Get_value(char* key, char* value1, int value2, float value3);
+int Get_value(char* key, char* value1, int* value2, float* value3);
 int Modify_value(char* key, char* value1, int value2, float value3);
 int Delete_key(char* key);
 int Exist(char* key);

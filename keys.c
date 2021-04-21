@@ -54,7 +54,7 @@ int Set_value(char *key, char *value1, int value2, float value3) {
     return result;
 }
 
-int Get_value(char *key, char *value1, int value2, float value3) {
+int Get_value(char *key, char *value1, int* value2, float* value3) {
     CLIENT *clnt;
     getval result;
     int res;
@@ -64,7 +64,7 @@ int Get_value(char *key, char *value1, int value2, float value3) {
         exit (1);
     }
     res = get_value_1(&key,&result, clnt);
-    //printf("problems incomin: %s\n",result.val1);
+    //printf("problems incomin!\n");
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
@@ -72,9 +72,9 @@ int Get_value(char *key, char *value1, int value2, float value3) {
     //printf("address in memory %p\n", &value1);
     strcpy(value1,result.val1);
     //printf("value1 is:%s\n",value1);
-    value2=result.val2;
+    *value2=result.val2;
     //printf("value2 is:%i\n",value2);
-    value3=result.val3;
+    *value3=result.val3;
     //printf("value3 is:%f\n",value3);
     //printf("function returned:%i\n",result.res);
     //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
@@ -94,7 +94,7 @@ int Modify_value(char *key, char *value1, int value2, float value3) {
         clnt_pcreateerror (host);
         exit (1);
     }
-    printf("value2 is: %i",value2);
+    //printf("value2 is: %i",value2);
     res = modify_value_1(&key, &value1, value2, value3, &result, clnt);
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
