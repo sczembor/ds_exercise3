@@ -69,8 +69,9 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
+    value1=malloc(255*sizeof(char));
     strcpy(value1,result.val1);
-    //printf("value1 is:%s\n",value1);
+    printf("value1 is:%s\n",value1);
     *value2=result.val2;
     //printf("value2 is:%i\n",value2);
     *value3=result.val3;
