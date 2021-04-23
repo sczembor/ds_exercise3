@@ -64,20 +64,17 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
         exit (1);
     }
     res = get_value_1(&key,&result, clnt);
-    //printf("problems incomin!\n");
+    printf("problems incomin!\n");
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");
     }
-    //value1=malloc(255*sizeof(char));
-    //printf("address in memory %p\n", &value1);
     strcpy(value1,result.val1);
-    //printf("value1 is:%s\n",value1);
+    printf("value1 is:%s\n",value1);
     *value2=result.val2;
-    //printf("value2 is:%i\n",value2);
+    printf("value2 is:%i\n",value2);
     *value3=result.val3;
-    //printf("value3 is:%f\n",value3);
-    //printf("function returned:%i\n",result.res);
-    //printf("value1:%s\nvalue2:%d\nvalue3:%f\n",result.val1,result.val2,result.val3);
+    printf("value3 is:%f\n",value3);
+    printf("function returned:%i\n",result.res);
     
     
     clnt_destroy (clnt);
