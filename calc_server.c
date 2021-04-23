@@ -76,6 +76,7 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
     bool_t retval;
     //tmp.key = malloc(255*sizeof(char));
     strcpy(tmp.key,key);
+    printf("tmp.key is: %s\n",tmp.key);
     if(searchList(&tmp.key)==1){
         //printf("WHY AM I IN IF STATEMENT???\n");
         result->res=0;
