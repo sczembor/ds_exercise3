@@ -83,13 +83,15 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
         tmp=*getValue(tmp.key);
         result->val1 = malloc(255*sizeof(char));
         strcpy(result->val1,tmp.value1);
-        //printf("value of result.val1 is:%s\n", result->val1);
+        printf("value of result.val1 is:%s\n", result->val1);
         result->val2=tmp.value2;
+        printf("value of result.val2 is:%i\n", result->val2);
         result->val3=tmp.value3;
+        printf("value of result.val3 is:%f\n", result->val3);
         //printf("All good in server\n");
     }
     else{
-        result->val1 = malloc(255*sizeof(char));
+        //result->val1 = malloc(255*sizeof(char));
         result->res=-1;
     }
     retval=TRUE;
