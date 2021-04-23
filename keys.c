@@ -63,6 +63,7 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
         clnt_pcreateerror (host);
         exit (1);
     }
+    printf("get_value in keys!!!!!!!!\n");
     res = get_value_1(&key,&result, clnt);
     printf("problems incomin!\n");
     if (res != RPC_SUCCESS) {
@@ -76,7 +77,7 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
     //printf("value3 is:%f\n",value3);
     //printf("function returned:%i\n",result.res);
     
-    
+    //free(key);
     clnt_destroy (clnt);
     return result.res;
     
