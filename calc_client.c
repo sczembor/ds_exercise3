@@ -80,7 +80,9 @@ com_1(char *host)
             printf("function returned:%i\n",res);
             if (res==0){
                 printf("akjsdhaksdjhaksjdgajshdgasjh\n");
-                printf("value1:%s\nvalue2:%d\nvalue3:%f\n",get_value_1_val1,get_value_1_val2,get_value_1_val3);
+                printf("value1:%s\n",get_value_1_val1);
+                printf("value2:%d\n",get_value_1_val2);
+                printf("value3:%f\n",get_value_1_val3);
             }
             //free(set_value_1_val1);
             break;
