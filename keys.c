@@ -57,7 +57,7 @@ int Set_value(char *key, char *value1, int value2, float value3) {
 int Get_value(char *key, char *value1, int* value2, float* value3) {
     CLIENT *clnt;
     getval result;
-    int res;
+    bool_t res;
     clnt = clnt_create (host, COM, COMVER, "udp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);

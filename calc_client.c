@@ -23,8 +23,8 @@ com_1(char *host)
 	int set_value_1_val2;
 	float set_value_1_val3;
     char *get_value_1_val1;
-    int *get_value_1_val2;
-    float *get_value_1_val3;
+    int get_value_1_val2;
+    float get_value_1_val3;
 	enum clnt_stat retval_3;
 	getval result_3;
 	char *get_value_1_key;
@@ -76,7 +76,7 @@ com_1(char *host)
             printf("key:");
             scanf("%s", &get_value_1_key);
             set_value_1_val1=malloc(255*sizeof(char));
-            res = Get_value(get_value_1_key, get_value_1_val1, get_value_1_val2, get_value_1_val3);
+            res = Get_value(get_value_1_key, get_value_1_val1, &get_value_1_val2, &get_value_1_val3);
             printf("function returned:%i\n",res);
             if (res==0){
                 printf("value1:%s\nvalue2:%d\nvalue3:%f\n",get_value_1_val1,get_value_1_val2,get_value_1_val3);
