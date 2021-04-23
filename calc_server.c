@@ -93,6 +93,7 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
     else{
         result->val1 = malloc(255*sizeof(char));
         result->res=-1;
+        printf("result->res is:%i\n",result->res);
     }
     retval=TRUE;
 	return retval;
@@ -162,7 +163,7 @@ int
 com_1_freeresult (SVCXPRT *transp, xdrproc_t xdr_result, caddr_t result)
 {
     printf("freeing in progress\n");
-	xdr_free (xdr_result, result);
+	//xdr_free (xdr_result, result);
 
 	/*
 	 * Insert additional freeing code here, if needed
