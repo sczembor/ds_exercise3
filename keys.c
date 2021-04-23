@@ -64,7 +64,7 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
         exit (1);
     }
     printf("get_value in keys!!!!!!!!\n");
-    res = get_value_1(&key,&result, clnt);
+    //res = get_value_1(&key,&result, clnt);
     printf("problems incomin!\n");
     if (res != RPC_SUCCESS) {
         clnt_perror(clnt, "call failed\n");

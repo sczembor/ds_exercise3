@@ -91,7 +91,7 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
         //printf("All good in server\n");
     }
     else{
-        //result->val1 = malloc(255*sizeof(char));
+        result->val1 = malloc(255*sizeof(char));
         result->res=-1;
     }
     retval=TRUE;
