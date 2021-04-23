@@ -49,16 +49,16 @@ set_value_1_svc(char *key, char *val1, int val2, float val3, int *result,  struc
 {
     printf("set_value() in progress\n");
 	bool_t retval;
-    printf("key is: %s\n",key);
+    //printf("key is: %s\n",key);
     strcpy(tmp.key,key);
-    printf("tmp.key is: %s\n",tmp.key);
+    //printf("tmp.key is: %s\n",tmp.key);
     strcpy(tmp.value1,val1);
     tmp.value2=val2;
     tmp.value3=val3;
     
     if(searchList(&tmp.key)==0)
     {
-        printf("adding node\n");
+        //printf("adding node\n");
         *result = addNode(&tmp.key,&tmp.value1,&tmp.value2,&tmp.value3);
     }
     else{
@@ -76,24 +76,24 @@ get_value_1_svc(char *key, getval *result,  struct svc_req *rqstp)
     bool_t retval;
     //tmp.key = malloc(255*sizeof(char));
     strcpy(tmp.key,key);
-    printf("tmp.key is: %s\n",tmp.key);
+    //printf("tmp.key is: %s\n",tmp.key);
     if(searchList(&tmp.key)==1){
         //printf("WHY AM I IN IF STATEMENT???\n");
         result->res=0;
         tmp=*getValue(tmp.key);
         result->val1 = malloc(255*sizeof(char));
         strcpy(result->val1,tmp.value1);
-        printf("value of result.val1 is:%s\n", result->val1);
+        //printf("value of result.val1 is:%s\n", result->val1);
         result->val2=tmp.value2;
-        printf("value of result.val2 is:%i\n", result->val2);
+        //printf("value of result.val2 is:%i\n", result->val2);
         result->val3=tmp.value3;
-        printf("value of result.val3 is:%f\n", result->val3);
+        //printf("value of result.val3 is:%f\n", result->val3);
         //printf("All good in server\n");
     }
     else{
         result->val1 = malloc(255*sizeof(char));
         result->res=-1;
-        printf("result->res is:%i\n",result->res);
+        //printf("result->res is:%i\n",result->res);
     }
     retval=TRUE;
 	return retval;
