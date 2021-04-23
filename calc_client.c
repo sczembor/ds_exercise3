@@ -75,7 +75,7 @@ com_1(char *host)
             case 3://get_value
             printf("key:");
             scanf("%s", &get_value_1_key);
-            set_value_1_val1=malloc(255*sizeof(char));
+            //set_value_1_val1=malloc(255*sizeof(char));
             res = Get_value(get_value_1_key, get_value_1_val1, &get_value_1_val2, &get_value_1_val3);
             printf("function returned:%i\n",res);
             if (res==0){
