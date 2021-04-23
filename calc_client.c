@@ -73,7 +73,7 @@ com_1(char *host)
             printf("key:");
             scanf("%s", &set_value_1_key);
             set_value_1_val1=malloc(255*sizeof(char));
-            res = Get_value(set_value_1_key, set_value_1_val1, &set_value_1_val2, &set_value_1_val3);
+            res = Get_value(set_value_1_key, &set_value_1_val1, &set_value_1_val2, &set_value_1_val3);
             printf("function returned:%i\n",res);
             if (res==0){
                 printf("value1:%s\nvalue2:%d\nvalue3:%f\n",set_value_1_val1,set_value_1_val2,set_value_1_val3);
