@@ -69,12 +69,12 @@ int Get_value(char *key, char *value1, int* value2, float* value3) {
         clnt_perror(clnt, "call failed\n");
     }
     strcpy(value1,result.val1);
-    printf("value1 is:%s\n",value1);
+    //printf("value1 is:%s\n",value1);
     *value2=result.val2;
-    printf("value2 is:%i\n",value2);
+    //printf("value2 is:%i\n",value2);
     *value3=result.val3;
-    printf("value3 is:%f\n",value3);
-    printf("function returned:%i\n",result.res);
+    //printf("value3 is:%f\n",value3);
+    //printf("function returned:%i\n",result.res);
     
     
     clnt_destroy (clnt);
